@@ -1,0 +1,436 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+body{
+    background-color: rgb(255, 255, 255);
+    font-family: 'Poppins', sans-serif;
+    /* background-image: radial-gradient(rgb(16, 15, 15), rgb(6, 5, 5), rgb(0, 0, 0)); */
+    background-size: 100% 1000px;
+}
+.larger{
+  font-weight: 600;
+  font-size: small;
+}
+.message{
+    background-color: #656565;
+    border-radius: 20px;
+    width: 50%;
+    overflow-wrap: break-word;
+    color: #ffffff;
+    padding: 10px;
+}
+.receivedMess{
+    background-color: #FF8585;
+    border-radius: 20px;
+    width: 50%;
+    overflow-wrap: break-word;
+    color: white;
+    padding: 10px;
+    margin-left: 45%;
+}
+
+.messageBox{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    height: 350px;
+    overflow-y: scroll;
+    margin-bottom: 0px;
+    border-radius: 20px;
+}
+
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #242A32;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 40px
+  }
+  input:focus {
+    outline: none;
+  }
+  .sendMessage form{
+      display: flex;
+      margin: 10px;
+  }
+.date{
+    margin-top: 7px;
+    margin-bottom: 15px;
+    color: #7b7777;
+    font-weight: 100;
+    font-size: small;
+    margin-left: 50%;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #242A32;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #574B9F;
+  }
+
+.noStyle{
+    text-decoration: none;
+    color: black;
+}
+.userCard{
+    margin: auto;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    font-size: smaller;
+}
+.desc{
+  width: 68%;
+  word-wrap: break-word;
+  padding: 1%;
+}
+.img{
+    margin-right:20px ;
+}
+.desc .nameOfUser{
+    font-weight: 500;
+}
+.desc .email{
+    color: #7b7777;
+}
+
+    
+
+.signInCard{
+    margin: auto;
+    margin-top:100px;
+    background-color: #F2F2F2;
+    box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 1);
+    width:40%;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    height: 300px;
+}
+.welcome{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.button button {
+  margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    padding: 5px;
+    min-width: fit-content;
+    min-height:55px
+}
+.buttonText{
+    margin-left: 5px;
+    margin-top: 10px;
+}
+.google{
+    margin-top: 5px;
+}
+.middle{
+  align-items: center;
+  font-size: larger;
+  font-weight: 500;
+}
+
+/* Loading----------------------------------- */
+.lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #EF0303;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+  }
+  .lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+  }
+  .lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+  }
+  @keyframes lds-facebook {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+  }
+
+
+  button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    width: fit-content;
+    padding: 7px 15px 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: small;
+    border-radius: 4px;
+  }
+
+  button:hover{
+    cursor: pointer;
+    background-color: rgb(232, 69, 69);  
+  }
+
+
+  .container{
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F2F2;
+    width: 50%;
+    min-width: 200px;
+    height: 550px;
+  }
+
+  .invisibleMess{
+    visibility: hidden;
+  }
+
+
+
+/* Styling of the Sidebar */
+.sideBar{
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to bottom, rgb(152, 228, 203), rgb(0, 3, 2));
+  height: 100vh;
+  width: 20%;
+  color: #eae6e6;
+  /* align-items: center; */
+}
+.align{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sideBar .image{
+  background-color: #242A32;
+  margin-top: 50px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 9px;
+  padding-right: 9px;
+  word-break: break-all;
+}
+
+.sideBar .navs ul li{
+  list-style: none;
+  color: white;
+}
+.sideBar .navs{
+  margin-top: 70px;
+}
+.sideBar .navs li{
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
+.sideBar .navs li:hover{
+  background-color: #51C13E;
+}
+.sideBar .navFooter .logout{
+  margin-top: 80px;
+  margin-bottom: 10px;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  background-image: linear-gradient(to bottom, rgb(245, 248, 255), rgb(239, 243, 255));
+  justify-content: center;
+}
+.wrap{
+  padding: 20px 30px 30px 20px;
+}
+.leftWrap{
+  width: 45%;
+}
+.leftWrap button{
+  margin-right: 20px;
+}
+.rightWrap{width: 55%;}
+
+input[type=text]{
+  background-color: white;
+  width: 100%;
+  padding: 12px 20px;
+  border: 0px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 30px;
+  box-sizing: border-box;
+  height: 30px;
+  color:#474646;
+  margin-bottom: 20px;
+}
+input:focus {
+  outline: none;
+}
+input::placeholder{
+    color: #413f3f7a;
+}
+
+/* input of the send Message  */
+.sendMessage input[type=text]{
+  width: 100%;
+  height: 30px;
+  margin: 0px;
+}
+.sendMessage form{
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+}
+.sendMessage form .textInput{
+  width: 70%;
+}
+
+.sendMessage button{
+  height: 30px;
+  border-radius: 30px;
+  padding-top: 7px;
+}
+.bigMessageBox{
+  display: flex;
+  flex-direction: column;
+  background-color: #C4C4C4;
+  border-radius: 20px;
+}
+.noMargin{
+  font-size: medium;
+}
+
+
+.search{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  justify-content: left;
+}
+.search .inputSearch{
+  flex-grow:1;
+}
+.search input[type=text]{
+  margin:0;
+  width: 65%;
+  max-width: 500px;
+}
+.search button{
+  margin: 0;
+  height: 30px;
+  padding: 5px 10px 5px 10px; 
+  margin-left: 10px;
+  min-width: 50px;
+}
+.blue{
+  background-color: #0daaf3;
+}
+.grey{
+  background-color: #656565;
+}
+.hide{
+  display: none;
+}
+.links{
+  text-decoration: none;
+}
+
+.bigSize{
+  width: 80%;
+}
+.request{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+.request button{
+  margin-left: 10px;
+}
+.request .userCard{
+  margin: 0;
+  width: 65%;
+  margin-right: 5%;
+  max-width: 500px;
+}
+.yellow{
+  background-color: #F02525;
+}
+.requestBtn{
+  margin-top:20px;
+  margin-right: 20px;
+}
+
+.cancelRequest{
+  background-color: #EED202;
+}
+
+.btnSize{
+  width: 80px;
+}
+
+
+
+
+
+/* Small screens css */
+@media only screen and (max-width: 950px) {
+  .sideBar{
+    display: none;
+  }
+  .wrapper{
+    width: 100vh;
+    height: 100vh;
+  }
+}
