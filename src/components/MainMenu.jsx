@@ -5,7 +5,6 @@ import { UserContext } from '../contexts/UserContext.jsx';
 import { Outlet } from "react-router-dom";
 
 
-
 function MainMenu() {
   const [hide, setHide] = useState("");
   const [searchData, setSearchData] = useState('');
@@ -18,8 +17,6 @@ function MainMenu() {
     email: "",
     id: ""
   }]);
-  // Loading of the users
-  const [loading, setLoading] = useState(true);
 
   // Get all the users
   const [users, setUsers] = useState([{
@@ -64,19 +61,22 @@ function MainMenu() {
   var existance =[];
 
   const createUser =async  () =>{
-    await db.collection('users').doc(currentUser.uid).set({
-      Name: currentUser.displayName,
-      email: currentUser.email,
-  })
+    if (currentUser.displayName == null) {
+      await db.collection('users').doc(currentUser.uid).set({
+        Name: currentUser.email,
+        email: currentUser.email,
+      })
+    } else {
+      await db.collection('users').doc(currentUser.uid).set({
+        Name: currentUser.displayName,
+        email: currentUser.email,
+      })
+    }
+    
+ 
   } 
 
-  useEffect(() => {
-    if(users.length != 0){
-      setLoading(false) 
-    }
-
-  }, [users]);
-
+ 
   
   useEffect(()=>{
     for (let index = 0; index < users.length; index++) {
@@ -123,21 +123,6 @@ const fetchPrevious = () => {
   });
 }
 
-  // This is the render method based on a condition . IF loading true, render the loading animation, else, render the list of users;
-
-  if(loading == true){
-    return (
-          
-                <div className="lds-facebook">
-                  <div></div> 
-                  <div></div> 
-                  <div></div>
-                </div>
-    )
-
-    
-  }else{
-    
 
     return (
       <div className="wrapper">
@@ -175,6 +160,6 @@ const fetchPrevious = () => {
     )
   }
   
-}
+
 
 export default MainMenu

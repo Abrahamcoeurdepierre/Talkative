@@ -6,7 +6,7 @@
 body{
     background-color: rgb(255, 255, 255);
     font-family: 'Poppins', sans-serif;
-    /* background-image: radial-gradient(rgb(16, 15, 15), rgb(6, 5, 5), rgb(0, 0, 0)); */
+    background-image: url("./Background.jpg");
     background-size: 100% 1000px;
 }
 .larger{
@@ -36,14 +36,14 @@ body{
     flex-direction: column;
     background-color: white;
     padding: 20px;
-    height: 350px;
+    height: 400px;
     overflow-y: scroll;
     margin-bottom: 0px;
     border-radius: 20px;
 }
 
 
-input[type=text], select {
+input[type=text] ,input[type=password], input[type=email], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -118,42 +118,114 @@ input[type=text], select {
     color: #7b7777;
 }
 
-    
-
-.signInCard{
+.Landing-Card{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  margin: 0 auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: relative;
+}
+.description .logos img{
+  margin-right: 20px;
+}
+.Welcome .description{
+  position: Absolute;
+  bottom: 70px;
+  margin: 0 auto;
+}
+.Welcome{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: fit-content;
+  padding-top: 40px;
+  padding-left: 30px;
+}
+.Welcome .tagline h1{
+  color: #176f07;
+  font-size: 90px;
+  
+}
+.Welcome .tagline h2{
+  color: white;
+  text-shadow:2px 2px rgb(51, 51, 51,0.8);
+  font-size: 30px;
+  margin-top: 10px;
+}
+.rightDiv{
+  width: 40%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+}
+.Card .button button:hover{
+    background-color: rgb(232, 69, 69);  
+}
+.Card{
     margin: auto;
-    margin-top:100px;
-    background-color: #F2F2F2;
-    box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 1);
-    width:40%;
-    min-width: 200px;
+    background-image: linear-gradient(to bottom right ,rgba(254, 254, 254, 0.8),rgba(255, 255, 255, 0.4)); 
+    backdrop-filter: blur(8px);
+    box-shadow: 1px 1px 0 0 rgba(96, 96, 96, 0.5);
     display: flex;
     align-items: center;
     flex-direction: column;
     padding-bottom: 30px;
-    padding: 10px;
     border-radius: 10px;
-    height: 300px;
+    width: fit-content;
+    padding-left: 26px;
+    padding-right: 26px;
 }
-.welcome{
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
+.Card button{
+  margin-bottom: 20px;
+  padding: 10px 30px 10px 30px;
+  font-size: 11px;
 }
-.button button {
-  margin-top: 30px;
+.Card input[type=password] ,input[type=email]{
+  width: 350px;
+  border-radius: 8px;
+  border: none;
+}
+.Card input[type=email]::placeholder ,input[type=password]::placeholder{
+  color: rgb(210, 209, 209);
+}
+.Card h5{
+  color: #7b7777;
+}
+.Card h2{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: white;
+  text-shadow:2px 2px rgb(51, 51, 51,0.8) ;
+}
+.Card .logo{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.Card .button button {
+    margin-top: 30px;
     margin-bottom: 30px;
+    align-items: center;
     display: flex;
-    padding: 5px;
-    min-width: fit-content;
-    min-height:55px
+    font-size: 12px;
+    background-color: #969494;
+    padding: 5px 15px 5px 15px;
 }
-.buttonText{
-    margin-left: 5px;
-    margin-top: 10px;
+.Card .button button img{
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
 }
-.google{
-    margin-top: 5px;
+.Card form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Card form button{
+  margin-top: 10px;
 }
 .middle{
   align-items: center;
@@ -165,14 +237,14 @@ input[type=text], select {
 .lds-facebook {
     display: inline-block;
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 30px;
+    height: 30px;
   }
   .lds-facebook div {
     display: inline-block;
     position: absolute;
     left: 8px;
-    width: 16px;
+    width: 10px;
     background: #EF0303;
     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
   }
@@ -329,17 +401,19 @@ input::placeholder{
 .sendMessage form{
   display: flex;
   flex-direction: row;
-
   justify-content: space-between;
 }
 .sendMessage form .textInput{
-  width: 70%;
+  width: 100%;
+  margin-right: 10px;
 }
 
 .sendMessage button{
   height: 30px;
-  border-radius: 30px;
+  border-radius: 10px;
   padding-top: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .bigMessageBox{
   display: flex;
@@ -420,17 +494,63 @@ input::placeholder{
   width: 80px;
 }
 
+/* Loading screen  */
+
+.loading-screen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 
+
+/* Error style  */
+.error{
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 14px;
+  padding-right: 14px;
+  width: 350px;
+  color: rgb(0, 0, 0);
+  font-weight:200;
+  font-size: medium;
+  margin-bottom: 20px;
+  background-color: tomato;
+}
+
+/* Hide login btn  */
+.true{
+  display: none;
+}
+.false{
+  display: block;
+}
 
 
 /* Small screens css */
-@media only screen and (max-width: 950px) {
-  .sideBar{
-    display: none;
-  }
-  .wrapper{
-    width: 100vh;
-    height: 100vh;
-  }
+@media only screen and (max-width: 1000px) {
+ 
 }

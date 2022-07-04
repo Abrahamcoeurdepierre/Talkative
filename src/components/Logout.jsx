@@ -4,9 +4,10 @@ import {auth, db} from "../firebase.js";
 
 function Logout() {
     let navigate = useNavigate();
-    const log = () => {    
-        navigate("/");
-        auth.signOut();
+    const log = () => {     
+        auth.signOut().then(() => {
+          navigate("/login");
+        });
     }
   return (
     <button onClick={log}>LOGOUT </button>

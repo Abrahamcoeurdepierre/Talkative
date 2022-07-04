@@ -7,8 +7,7 @@ function SendMessage(props) {
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
-         
-
+        
     async function sendMessage(e) {
         e.preventDefault()
         try {
@@ -34,19 +33,6 @@ function SendMessage(props) {
     }
     
     var load = "Write here";
-    if (loading == true) {
-        load = "loading"
-    }
-    else{
-        load =  "Write here";
-    }
-
-
-    if (loading) {
-        return (
-            <div className="lds-facebook"><div></div> <div></div> <div></div></div>
-        )
-    } else {
         return (
       
             <div className='sendMessage'>
@@ -54,7 +40,7 @@ function SendMessage(props) {
                     <div className='textInput' >
                         <input type= "text"placeholder={load} value={message} onChange={(e) => setMessage(e.target.value)} required/>
                     </div>
-                    <div className='float'>
+                    <div className={`float ${loading.toString()}` }  >
                         <button type='submit'>Send</button>
                     </div>
                 </form>
@@ -63,6 +49,5 @@ function SendMessage(props) {
           )
     }
  
-}
 
 export default SendMessage

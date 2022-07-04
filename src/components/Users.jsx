@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom"
 import image from "../styles/1.png"
-import { auth} from '../firebase';
+import { auth} from '../firebase'
 import bell from "../styles/bell2.png"
 
 function Users(props) {

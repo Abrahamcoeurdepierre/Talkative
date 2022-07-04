@@ -9,7 +9,7 @@ function SentRequests(props) {
   async function cancel() {
     try {
       setLoading (true);
-      await db.collection('users').doc(`${currentUser.uid}`).collection("sentFriendRequests").doc(`${props.docId}`).delete();
+      await db.collection('users').doc(`${currentUser.uid}`).collection("sentFriendRequests").doc(`${props.docId}`).delete(); 
       await db.collection('users').doc(`${props.docId}`).collection("receivedFriendRequests").doc(`${currentUser.uid}`).delete();
       setLoading(false);
   } catch (error) {

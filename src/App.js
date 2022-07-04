@@ -12,11 +12,14 @@ import FriendRequests from './components/FriendRequests/FriendRequests';
 import SideBar from './components/NavBar/SideBar';
 import AddFriendsPage from './components/AddFriends/AddFriendsPage';
 import MessagePlaceHolder from './components/AddFriends/MessagePlaceHolder';
-
+import CreateAccount from './components/CreateAccount';
+import EmailSent from './components/EmailSent';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
   // Authentified user
-  const [user] = useAuthState(auth);
+  const [user,loading] = useAuthState(auth);
+
 
   // Send the Auth user via context
   const [currentUser, setCurrentUser] = useState({
@@ -31,39 +34,68 @@ function App() {
     
   }, [user]);
 
-
-  if (user) {
-    return (
-      <Router>
-      <UserContext.Provider value={{currentUser, setCurrentUser}}>
-      <div className='mainFrame'>
-      <SideBar/>
-      
-     <Routes>
-          <Route path="/" element={<Mainmenu/>}>
-            <Route path='messages/:userId' element={<Messages/>}/>
-            <Route path='' element={<MessagePlaceHolder/>}/>
-          </Route>
-          <Route path='*' element={<Mainmenu/>}/>
-          <Route path='/friendrequests' element={<FriendRequests/>}/>
-          <Route path="/signin" element={<SignIn/>}/>
-          <Route path='/addfriends' element={<AddFriendsPage/>}/>
-    </Routes>
-    </div>
-    </UserContext.Provider>
-  </Router>
-    );
-    
-  } else {
-    return (
-    <Router>
-      <UserContext.Provider value={{currentUser, setCurrentUser}}>
-     <Routes>
-          <Route path="/" element={<SignIn/>}/>
-    </Routes>
-    </UserContext.Provider>
-  </Router>)
+  console.log(user)
+  if(loading){
+      return(
+        <LoadingScreen/>
+      )
   }
+  else{
+      if (user) {
+        if(user.emailVerified){
+          return (
+            <Router>
+            <UserContext.Provider value={{currentUser, setCurrentUser}}>
+            <div className='mainFrame'>
+            <SideBar/>
+            
+          <Routes>
+                <Route path="/" element={<Mainmenu/>}>
+                  <Route path='messages/:userId' element={<Messages/>}/>
+                  <Route path='' element={<MessagePlaceHolder/>}/>
+                </Route>
+                <Route path='*' element={<Mainmenu/>}/>
+                <Route path='/friendrequests' element={<FriendRequests/>}/>
+                <Route path="/signin" element={<SignIn/>}/>
+                <Route path='/addfriends' element={<AddFriendsPage/>}/>
+                <Route path='/sentemail' element={<EmailSent/>}/>
+          </Routes>
+          </div>
+          </UserContext.Provider>
+        </Router>
+          );
+        }
+        else{
+          return(
+            <Router>
+              <Routes>
+                <Route path='*' element={<EmailSent/>}/>
+                <Route path='/login' element={<SignIn/>}/>
+                <Route path='/' element={<EmailSent/>}/>
+                <Route path="/createaccount" element={<CreateAccount/>}/>
+              </Routes>
+            </Router>
+          )
+        }
+      
+        
+      } else {
+        return (
+        <Router>
+          <UserContext.Provider value={{currentUser, setCurrentUser}}>
+        <Routes>
+              <Route path="*" element={<SignIn/>}/>
+              <Route path='/login' element={<SignIn/>}/>
+              <Route path="/createaccount" element={<CreateAccount/>}/>
+              <Route path='/sentemail' element={<EmailSent/>}/>
+    
+    
+        </Routes>
+        </UserContext.Provider>
+      </Router>)
+      }
+    }
+  
 
 }
 
