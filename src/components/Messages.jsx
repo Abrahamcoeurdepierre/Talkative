@@ -19,9 +19,15 @@ function Messages() {
     let unsubMessages, unsubMessages2; 
       
     const getFriend = () => {
+      if(currUser.uid == 0){
+
+      }
+      else{
         db.collection('users').doc(`${currUser.uid}`).collection("friends").doc(userId).update({
-            read: "true"
-        });  
+          read: "true"
+      }); 
+      }
+        
     }
     const getSentMessages = () => {
 

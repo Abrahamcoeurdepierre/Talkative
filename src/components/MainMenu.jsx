@@ -17,7 +17,7 @@ function MainMenu() {
     email: "",
     id: ""
   }]);
-
+  let snap1, snap2, snap3, snap4, snap5, snap6;
   // Get all the users
   const [users, setUsers] = useState([{
     email: currentUser.email,
@@ -25,31 +25,47 @@ function MainMenu() {
   }]);
 
   const getUsers =  () => {
-    db.collection('users').onSnapshot(snapshot => {
+    snap1 = db.collection('users').onSnapshot(snapshot => {
     setUsers(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
     });  
   }
   const getPaginationFriends =  () => {
-    db.collection('users').doc(`${currentUser.uid}`).collection("friends").where("email", "==",searchData ).onSnapshot(snapshot => {
+    snap2 = db.collection('users').doc(`${currentUser.uid}`).collection("friends").where("email", "==",searchData ).onSnapshot(snapshot => {
     setFriends(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
     });  
   }
   const getPaginationAll = () => {
-    db.collection('users').doc(`${currentUser.uid}`).collection("friends").orderBy('interactedAt',"desc").limit(limit).onSnapshot(snapshot => {
-      setFriends(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
-      setLastData(snapshot.docs[snapshot.size - 1]);
-      }); 
+        snap3 = db.collection('users').doc(`${currentUser.uid}`).collection("friends").orderBy('interactedAt',"desc").limit(limit).onSnapshot(snapshot => {
+          setFriends(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})));
+          setLastData(snapshot.docs[snapshot.size - 1]);
+        },
+        error => {
+          console.log(error);
+        });    
   }
 
   useEffect(() => {
-    getUsers();
-    getPaginationAll();
+    if(currentUser.uid == 0){
+
+    }
+    else{
+      getUsers();
+      getPaginationAll();
+      return () => {
+        snap3();
+      };
+    }
+   
+    
    }, [currentUser ]);
 
   useEffect(() => {
     if (searchData == "") {
-      getPaginationAll();
-      setHide("");
+      if(currentUser.uid != 0){
+        getPaginationAll();
+        setHide("");
+      }
+      
     } else {
       getPaginationFriends();
       setHide("hide");
@@ -76,8 +92,7 @@ function MainMenu() {
  
   } 
 
- 
-  
+
   useEffect(()=>{
     for (let index = 0; index < users.length; index++) {
       if(users[index].email == currentUser.email){
@@ -102,7 +117,7 @@ function MainMenu() {
   
 
 const fetchNext = () => {
-      db.collection('users').doc(`${currentUser.uid}`).collection("friends").orderBy('interactedAt',"desc").startAfter(lastData).limit(limit).onSnapshot(snapshot => {
+      snap5 = db.collection('users').doc(`${currentUser.uid}`).collection("friends").orderBy('interactedAt',"desc").startAfter(lastData).limit(limit).onSnapshot(snapshot => {
         if(snapshot.size > 0){
             setFriends(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
             setFirstData(snapshot.docs[0])
@@ -113,7 +128,7 @@ const fetchNext = () => {
 }
 
 const fetchPrevious = () => {
-  db.collection('users').doc(`${currentUser.uid}`).collection("friends").orderBy('interactedAt',"desc").endBefore(firstData).limitToLast(limit).onSnapshot(snapshot => {
+  snap6 = db.collection('users').doc(`${currentUser.uid}`).collection("friends").orderBy('interactedAt',"desc").endBefore(firstData).limitToLast(limit).onSnapshot(snapshot => {
     if(snapshot.size > 0){
         setFriends(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
         setFirstData(snapshot.docs[0])

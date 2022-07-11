@@ -10,7 +10,7 @@ function AddFriendsPage() {
   const [searchData, setSearchData] = useState('');
   const [lastData, setLastData] = useState(0);
   const [firstData, setFirstData] = useState(0);
-  let unsub;
+  let unsub ,unsub1, unsub2;
   const {currentUser} = useContext(UserContext);
   const [people, setPeople] = useState([]);
   const [friends, setFriends] = useState([]);
@@ -20,12 +20,14 @@ function AddFriendsPage() {
   const limit = 5;
 
   const getFriends =  () => {
-  unsub = db.collection('users').doc(`${currentUser.uid}`).collection("friends").onSnapshot(snapshot => {
+  unsub1 = db.collection('users').doc(`${currentUser.uid}`).collection("friends").onSnapshot(snapshot => {
   setFriends(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
+  },error => {
+    console.log(error);
   }); 
 }
   const getFriendRequests =  () => {
-    unsub = db.collection('users').doc(`${currentUser.uid}`).collection("sentFriendRequests").onSnapshot(snapshot => {
+    unsub2 = db.collection('users').doc(`${currentUser.uid}`).collection("sentFriendRequests").onSnapshot(snapshot => {
     setSentRequests(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
     }); 
   }
@@ -96,12 +98,20 @@ useEffect(() => {
 
 
 useEffect(() => {
+  if(currentUser.uid == 0){
+
+  }
+  else{
     getFriends();
     getPeople();
     getFriendRequests();
     getReceivedRequests();
+  }
+    
     return () => {
-        
+        unsub();
+        unsub1();
+        unsub2();
     };
 
 }, [currentUser]);

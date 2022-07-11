@@ -15,6 +15,9 @@ import MessagePlaceHolder from './components/AddFriends/MessagePlaceHolder';
 import CreateAccount from './components/CreateAccount';
 import EmailSent from './components/EmailSent';
 import LoadingScreen from './components/LoadingScreen';
+import logo from "./styles/logo.png"
+
+
 
 function App() {
   // Authentified user
@@ -34,7 +37,6 @@ function App() {
     
   }, [user]);
 
-  console.log(user)
   if(loading){
       return(
         <LoadingScreen/>
@@ -81,18 +83,34 @@ function App() {
         
       } else {
         return (
-        <Router>
-          <UserContext.Provider value={{currentUser, setCurrentUser}}>
-        <Routes>
-              <Route path="*" element={<SignIn/>}/>
-              <Route path='/login' element={<SignIn/>}/>
-              <Route path="/createaccount" element={<CreateAccount/>}/>
-              <Route path='/sentemail' element={<EmailSent/>}/>
-    
-    
-        </Routes>
-        </UserContext.Provider>
-      </Router>)
+          <div>
+            <div  className='mainFrame'>
+
+            
+                <Router>
+                  <UserContext.Provider value={{currentUser, setCurrentUser}}>
+                <Routes>
+                      <Route path="*" element={<SignIn/>}/>
+                      <Route path='/login' element={<SignIn/>}/>
+                      <Route path="/createaccount" element={<CreateAccount/>}/>
+                      <Route path='/sentemail' element={<EmailSent/>}/>
+            
+            
+                </Routes>
+                </UserContext.Provider>
+              </Router>
+              </div>
+            <div className='mobile'> 
+              <div className='Card'>
+                <div className="logo">
+                        <img src={logo} width="170" height="100" />
+                </div>
+                We are sorry, the mobile version of this website is not available. There will be an android app version soon. Stay tuned.
+              </div>
+                
+            </div>
+      </div>
+      )
       }
     }
   
