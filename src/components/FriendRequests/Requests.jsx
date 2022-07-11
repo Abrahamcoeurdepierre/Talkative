@@ -22,26 +22,28 @@ function Requests(props) {
 
 
 async function accept() {
-  try {
+
       setLoading (true);
       await db.collection('users').doc(`${currentUser.uid}`).collection("friends").doc(props.docId).set({
           name: props.name,
           email: props.email,
           interactedAt: firebase.firestore.FieldValue.serverTimestamp()
 
+      }).catch(error => {
+        console.log(error);
       });
       await db.collection('users').doc(`${props.docId}`).collection("friends").doc(currentUser.uid).set({
         name: currentUser.displayName,
         email: currentUser.email,
         interactedAt: firebase.firestore.FieldValue.serverTimestamp()
 
+    }).catch(error => {
+      console.log(error);
     });
       reject();
       setLoading(false);
 
-  } catch (error) {
-      console.log(error);
-  }
+
 }
 
   return (
